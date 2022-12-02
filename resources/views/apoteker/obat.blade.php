@@ -14,6 +14,32 @@
 		<a class="btn btn-primary btn-flat" role="button" data-toggle="collapse" href="#collapse-tambah" aria-expanded="false" aria-controls="collapse-tambah">
 			Tambah Obat <i class="fa fa-plus"></i>
 		</a>
+		<a class="btn btn-success btn-flat" href="{{route('exportExcelObat', 'xlsx')}}">
+			Export To Excel <i class="fa fa-file-excel-o"></i>
+		</a>
+		<a class="btn btn-danger btn-flat" href="#collapse-pdf" data-toggle="collapse">
+			Export To PDF <i class="fa fa-file-pdf-o"></i>
+		</a>
+		{{-- collapse pdf --}}
+	<div class="collapse" id="collapse-pdf">
+		<div class="well">
+			<form action="{{route('exportPDFObat')}}" method="post">
+				{{csrf_field()}}
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+					<div class="form-group">
+						<label>Semua Data Obat</label>
+						<input type="submit" class="btn btn-flat btn-info btn-md btn-block" name="semua" value="semua">
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+					<div class="form-group">
+						<label>Data Obat yang Habis</label>
+						<input type="submit" class="btn btn-flat btn-danger btn-md btn-block" name="habis" value="habis">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 		{{-- collapse tambah --}}
 		<div class="collapse" id="collapse-tambah">
 			<div class="well">
@@ -80,7 +106,6 @@
 						<th>Nama</th>
 						<th>Kandungan</th>
 						<th>Kategori</th>
-						<th>Harga</th>
 						<th>Stok Obat</th>
 						<th>Action</th>
 					</tr>
@@ -93,7 +118,6 @@
 						<td>{{$data['nama']}}</td>
 						<td>{{$data['kandungan']}}</td>
 						<td>{{$data['kategori']['kategori']}}</td>
-						<td>{{$data['harga']}}</td>
 						<td>
 							@if ($data['status'] == 'ada')
 							<span class="btn btn-flat btn-success btn-block">Tersedia <i class="fa fa-check"></i></span>

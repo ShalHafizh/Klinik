@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Dokter;
 use App\NoAntrian;
 use App\Pasien;
+use App\Obat;
+use App\TransaksiPasien;
+use App\KategoriObat;
 use Barryvdh\DomPDF\PDF;
 use Excel;
 use Illuminate\Database\QueryException;
@@ -234,4 +237,32 @@ class ResepsionistController extends Controller
         $data["last_id"] = $this->getLastNoAntrian();
         return response()->json($data);
     }
+
+    public function getObat() {
+        $obat = Obat::with('kategori')->get()->toArray();
+        $kategori = KategoriObat::get()->toArray();
+    return view('resepsionist.obat', ['obat' => $obat, 'kategori' => $kategori]);
+}
+
+public function postObat(Request $request) {
+    if ($request->ajax()) {
+        $data = Obat::create($request->all());
+        return response()->json($data);
+    }
+}
+
+public function postUpdateObat(Request $request) {
+    if ($request->ajax()) {
+        $data = Obat::find($request->id)->update($request->all());
+        // $data = $request->id;
+        return response()->json($data);
+    }
+}
+
+public function getHapusObat(Request $request) {
+    if ($request->ajax()) {
+        $data = Obat::find($request->id)->delete();
+        return response()->json($data);
+    }
+}
 }

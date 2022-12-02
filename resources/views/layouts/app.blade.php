@@ -84,12 +84,15 @@
                   @if(Auth::guard('admin')->check())
                   <li><a href="{{ route('admin.index') }}"><i class="fa fa-home"></i> Dashboard</a>
                 </li>
-                <li><a href="{{ route('adminResepsionist') }}"><i class="fa fa-clipboard"></i> Loket</a>
+                <li><a href="{{ route('adminResepsionist') }}"><i class="fa fa-clipboard"></i> Loket</a></li>
                 <li><a href="{{ route('adminDokter') }}"><i class="fa fa-user-md"></i> Dokter</a></li>
+                <li><a href="{{ route('ambilPasien') }}"><i class="fa fa-users"></i>Data Pasien Terdaftar</a>
+                </li>
                 @elseif(Auth::guard('resepsionist')->check())
                 <li><a href="{{ route('resepsionist.index') }}"><i class="fa fa-clipboard"></i> Pendaftaran Pasien</a>
               </li>
-              <li><a href="{{ route('getPasien') }}"><i class="fa fa-users"></i>Data Pasien Terdaftar</a>
+              <li><a href="{{ route('getPasien') }}"><i class="fa fa-users"></i>Data Pasien Terdaftar</a></li>
+                <li><a href="{{ route('ambilGetObat') }}"><i class="fa fa-medkit"></i> Stok & Harga Obat</a>
             </li>
             @elseif(Auth::guard('dokter')->check())
             <li><a href="{{ route('dokter.index') }}"><i class="fa fa-stethoscope "></i> Pemeriksaan Pasien</a>
@@ -157,9 +160,7 @@
 <!-- /page content -->
 <!-- footer content -->
 <footer>
-<div class="pull-right">
-Developed with <i class="fa fa-heart" style="color: red"></i> by <a href="https://bangadam.github.io">NoSleepTeam | Repost by <a href="https://stokcoding.com/" title="StokCoding.com" target="_blank">StokCoding.com</a></a>
-</div>
+
 <div class="clearfix"></div>
 </footer>
 <!-- /footer content -->

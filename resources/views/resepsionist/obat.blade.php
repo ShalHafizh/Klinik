@@ -78,7 +78,6 @@
 					<tr>
 						<th>No.</th>
 						<th>Nama</th>
-						<th>Kandungan</th>
 						<th>Kategori</th>
 						<th>Harga</th>
 						<th>Stok Obat</th>
@@ -91,7 +90,6 @@
 					<tr>
 						<td>{{$no++}}</td>
 						<td>{{$data['nama']}}</td>
-						<td>{{$data['kandungan']}}</td>
 						<td>{{$data['kategori']['kategori']}}</td>
 						<td>{{$data['harga']}}</td>
 						<td>
@@ -299,7 +297,7 @@
 			e.preventDefault();
 			var data = $(this).serialize();
 			console.log(data);
-			$.post("{{route('postUpdateObat')}}", data, function() {
+			$.post("{{route('ambilPostUpdateObat')}}", data, function() {
 				// console.log(data);
 				toastr.success('Success !', 'Data berhasil di update !');
 				location.reload();
@@ -316,7 +314,7 @@
 			typeAnimated: true,
 			buttons: {
 			confirm: function () {
-			$.get("{{ route('getHapusObat') }}", {id: id}, function (data) {
+			$.get("{{ route('ambilGetHapusObat') }}", {id: id}, function (data) {
 			toastr.success('Success !', 'Data berhasil di hapus');
 			location.reload();
 			});
@@ -330,7 +328,7 @@
 		$('#frm-tambah').on('submit', function(e) {
 			e.preventDefault();
 			var data = $(this).serialize();
-			$.post("{{route('postObat')}}", data, function(data) {
+			$.post("{{route('ambilPostObat')}}", data, function(data) {
 				toastr.success('Success !', 'Data berhasil di simpan !');
 				location.reload();
 			});

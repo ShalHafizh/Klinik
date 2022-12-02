@@ -25,6 +25,11 @@ Route::group(['prefix' => 'admin'], function() {
     	Route::post('/dokter/addSpesialis', ['uses' => 'AdminController@addSpesialis', 'as' => 'addSpesialis']);
 	Route::post('/dokter/update', ['uses' => 'AdminController@updateAdminDokter', 'as' => 'updateAdminDokter']);
 	Route::get('/dokter/delete', ['uses' => 'AdminController@deleteAdminDokter', 'as' => 'deleteAdminDokter']);
+//pasien
+	Route::get('/adminpasien/hapus', ['uses' => 'AdminController@getHapusPasien', 'as' => 'ambilHapusPasien']);
+	Route::get('/adminpasien', ['uses' => 'AdminController@getPasien', 'as' => 'ambilPasien']);
+	Route::post('/adminpasien/pasien-terdaftar', ['uses' => 'AdminController@postPasienTerdaftar', 'as' => 'ambilPasienTerdaftar']);
+	Route::post('/adminpasien/update', ['uses' => 'AdminController@postUpdatePasien', 'as' => 'ambilUpdatePasien']);
 });
 
 // Respsionist
@@ -39,6 +44,12 @@ Route::group(['prefix' => 'resepsionist'], function() {
 	Route::post('/pasien/update', ['uses' => 'ResepsionistController@postUpdatePasien', 'as' => 'postUpdatePasien']);
 	Route::post('/pasien/export/{type}', ['uses' => 'ResepsionistController@exportExcelPasien', 'as' => 'exportExcelPasien']);
 	Route::post('/pasien/exportPdf', ['uses' => 'ResepsionistController@exportPDFPasien', 'as' => 'exportPDFPasien']);
+	
+	//Obat
+	Route::get('/loketobat', ['uses' => 'ResepsionistController@getObat', 'as' => 'ambilGetObat']);
+	Route::post('/loketobat', ['uses' => 'ResepsionistController@postObat', 'as' => 'ambilPostObat']);
+	Route::post('/loketobat/update', ['uses' => 'ResepsionistController@postUpdateObat', 'as' => 'ambilPostUpdateObat']);
+	Route::get('/loketobat/getHapusObat', ['uses' => 'ResepsionistController@getHapusObat', 'as' => 'ambilGetHapusObat']);
 });
 
 // Dokter
